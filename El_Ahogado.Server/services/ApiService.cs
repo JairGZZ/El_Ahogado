@@ -10,7 +10,7 @@
     {
         private readonly HttpClient _httpClient = new HttpClient();
 
-        public async Task<WordApiResponse> GetRandomWordAsync(int? minLength = null,int? maxLength = null)
+        public async Task<string> GetRandomWordAsync(int? minLength = null,int? maxLength = null)
         {
             string url = "https://rae-api.com/api/random";
 
@@ -40,7 +40,7 @@
                 PropertyNameCaseInsensitive = true
             });
 
-            return apiResponse;
+            return apiResponse.Data.Word;
         }
     }
 }
