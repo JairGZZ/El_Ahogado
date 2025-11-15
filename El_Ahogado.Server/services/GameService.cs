@@ -8,23 +8,20 @@ using System.Text;
 
 public class GameService
 {
-    private readonly IServiceProvider _provider;
+    private readonly ApiService _apiService;
     private readonly Dictionary<Guid, Game> _games = new();
 
 
-    public GameService(IServiceProvider provider)
+    public GameService(ApiService apiService)
     {
-        _provider = provider;
+        _apiService = apiService;
     }
 
     public async Task<GameResponse> NewGame()
     {
 
-        // Creamos un scope temporal para obtener ApiService 
-        using var scope = _provider.CreateScope();
-        var apiService = scope.ServiceProvider.GetRequiredService<ApiService>();
 
-        var secretWord = await apiService.GetRandomWordAsync();
+        var secretWord = await _apiService.GetRandomWordAsync();
 
         var newGame = new Game
         {

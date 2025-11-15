@@ -12,10 +12,12 @@ builder.Services.AddControllers()
         //como el identificador que le puse
         options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
     });
-builder.Services.AddSingleton<ApiService>();
 builder.Services.AddSingleton<GameService>();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
+
+// Register ApiService with HttpClient
+builder.Services.AddHttpClient<ApiService>();
 
 var app = builder.Build();
 

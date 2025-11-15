@@ -8,7 +8,11 @@
 
     public class ApiService
     {
-        private readonly HttpClient _httpClient = new HttpClient();
+        private readonly HttpClient _httpClient;
+        public ApiService(HttpClient httpClient)
+        {
+            _httpClient = httpClient;
+        }
 
         public async Task<string> GetRandomWordAsync(int? minLength = null,int? maxLength = null)
         {
